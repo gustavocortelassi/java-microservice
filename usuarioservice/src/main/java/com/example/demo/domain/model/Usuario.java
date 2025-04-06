@@ -1,9 +1,12 @@
-package main.java.com.example.demo.domain.model;
+package com.example.demo.domain.model;
+
+
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 import java.time.LocalDate;
 import java.util.regex.Pattern;
-
-import javax.annotation.processing.Generated;
 
 public class Usuario {
     @Id
