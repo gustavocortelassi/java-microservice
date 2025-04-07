@@ -1,32 +1,32 @@
 package com.example.demo.infrastructure.controller;
 
-import com.example.demo.application.UsuarioService;
-import com.example.demo.domain.model.Usuario;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.application.SalaService;
+import com.example.demo.domain.model.Sala;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
-public class UsuarioController {
+@RequestMapping("/api/salas")
+public class SalaController {
 
     @Autowired
-    private UsuarioService service;
+    private SalaService service;
 
     @GetMapping
-    public List<Usuario> listar() {
+    public List<Sala> listar() {
         return service.listar();
     }
 
-    @PostMapping("/salvar")
-    public Usuario salvar(@RequestBody Usuario usuario) {
-        return service.salvar(usuario);
+    @PostMapping
+    public Sala salvar(@RequestBody Sala sala) {
+        return service.salvar(sala);
     }
 
     @GetMapping("/{id}")
-    public Usuario buscarPorId(@PathVariable Long id) {
+    public Sala buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id);
     }
 
