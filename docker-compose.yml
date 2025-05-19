@@ -18,7 +18,7 @@ services:
     build: ./usuarioservice
     container_name: usuarioservice
     ports:
-      - "8081:8080"
+      - "8081:8083"  # mapeando corretamente a porta 8083 interna
     depends_on:
       - postgres-usuario
 
@@ -39,7 +39,7 @@ services:
     build: ./salaservice
     container_name: salaservice
     ports:
-      - "8082:8080"
+      - "8082:8082"  # mapeando corretamente a porta 8082 interna
     depends_on:
       - postgres-sala
 
@@ -60,9 +60,10 @@ services:
     build: ./reservaservice
     container_name: reservaservice
     ports:
-      - "8083:8080"
+    - "8084:8084"
     depends_on:
-      - postgres-reserva
+    - postgres-reserva
+
 
 volumes:
   pgdata-usuario:
