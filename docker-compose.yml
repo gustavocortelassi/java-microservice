@@ -2,6 +2,22 @@ version: '3.8'
 
 services:
 
+  # Nginx como gateway reverso para os microserviços
+  nginx:
+      image: nginx:latest
+      container_name: nginx-gateway
+      ports:
+        - "80:80"
+      volumes:
+        - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      depends_on:
+        - usuarioservice
+        - salaservice
+        - reservaservice
+      networks:
+        - microservice-net
+
+  # RabbitMQ para comunicação entre microserviços
   rabbitmq:
     image: rabbitmq:3-management
     ports:
@@ -10,7 +26,7 @@ services:
     networks:
       - microservice-net
 
-  # Banco de dados do usuárioservice
+  # Banco de dados do usuarioservice
   postgres-usuario:
     image: postgres:15
     container_name: postgres-usuario
@@ -25,6 +41,7 @@ services:
     networks:
       - microservice-net
 
+  # Serviço de usuários
   usuarioservice:
     build: ./usuarioservice
     container_name: usuarioservice
@@ -50,11 +67,12 @@ services:
     networks:
       - microservice-net
 
+  # Serviço de salas
   salaservice:
     build: ./salaservice
     container_name: salaservice
     ports:
-      - "8082:8082"  # mapeando corretamente a porta 8082 interna
+      - "8082:8082" 
     depends_on:
       - postgres-sala
     networks:
@@ -80,6 +98,7 @@ services:
       timeout: 5s
       retries: 5
 
+  # Serviço de reservas
   reservaservice:
     build: ./reservaservice
     container_name: reservaservice
@@ -91,11 +110,12 @@ services:
     networks:
       - microservice-net
 
-
+# Volumes para persistência de dados dos bancos de dados
 volumes:
   pgdata-usuario:
   pgdata-sala:
   pgdata-reserva:
 
+# Definição da rede para os microserviços
 networks:
   microservice-net:
