@@ -1,4 +1,3 @@
-
 # Sistema de Reserva de Salas — Microservices Java + Spring Boot + Docker
 
 Este projeto é uma arquitetura de microserviços para gerenciamento de reservas de salas, desenvolvido em Java com Spring Boot, mensageria com RabbitMQ, bancos PostgreSQL individuais por serviço e orquestração via Docker Compose. O gateway reverso é realizado com Nginx. Cada serviço roda de forma isolada e comunicam-se por REST e RabbitMQ.
@@ -13,7 +12,7 @@ Este projeto é uma arquitetura de microserviços para gerenciamento de reservas
 - [Como limpar e buildar os JARs](#como-limpar-e-buildar-os-jars)
 - [Como rodar com Docker Compose](#como-rodar-com-docker-compose)
 - [Testes](#testes)
-- [Documentação da API](#documentação-da-api)
+- [Testando as APIs — Coleção Insomnia](#testando-as-apis---coleção-insomnia)
 - [Como acessar o RabbitMQ Management](#como-acessar-o-rabbitmq-management)
 - [Acessando o sistema](#acessando-o-sistema)
 - [FAQ / Dúvidas Frequentes](#faq--dúvidas-frequentes)
@@ -106,54 +105,17 @@ mvn test
 
 ---
 
-## Documentação da API
+## Testando as APIs — Coleção Insomnia
 
-### Usuário
+Uma coleção completa do Insomnia já está pronta para você testar todos os endpoints dos microserviços, incluindo exemplos de payload, autenticação e organização por serviço.
 
-- **GET** `/usuarios` — Lista todos os usuários
-- **POST** `/usuarios/salvar` — Cria um novo usuário (body: JSON)
-- **GET** `/usuarios/{id}` — Busca usuário por ID
-- **DELETE** `/usuarios/{id}` — Remove usuário por ID
+- **Arquivo da coleção Insomnia:** [`insomnia_microservices.json`](insomnia_microservices.json)
+- **Como usar:**  
+  1. Baixe o arquivo.
+  2. No Insomnia, vá em `Import Data > From File` e selecione o JSON.
+  3. Use as requisições prontas, já configuradas com autenticação básica (`admin` / `admin`).
 
-### Sala
-
-- **GET** `/api/salas` — Lista todas as salas
-- **POST** `/api/salas` — Cria uma nova sala (body: JSON)
-- **GET** `/api/salas/{id}` — Busca sala por ID
-- **DELETE** `/api/salas/{id}` — Remove sala por ID
-
-### Reserva
-
-- **GET** `/reservas` — Lista todas as reservas
-- **POST** `/reservas/salvar` — Cria uma nova reserva (body: JSON)
-
-#### Exemplos de payload:
-
-**Usuário**
-```json
-{
-  "nome": "João Silva",
-  "email": "joao@exemplo.com"
-}
-```
-
-**Sala**
-```json
-{
-  "nome": "Sala 101",
-  "localizacao": "Prédio A"
-}
-```
-
-**Reserva**
-```json
-{
-  "usuarioId": 1,
-  "salaId": 2,
-  "dataHoraInicio": "2025-06-10T14:00:00",
-  "dataHoraFim": "2025-06-10T15:00:00"
-}
-```
+Assim, você não precisa se preocupar em criar ou documentar manualmente cada endpoint — basta importar e começar a testar!
 
 ---
 
@@ -181,5 +143,6 @@ Por padrão (ajuste conforme seu nginx.conf):
 - **Não consigo conectar ao banco:** Certifique-se que os serviços postgres estão rodando e as variáveis de ambiente no `docker-compose.yml` estão corretas.
 - **Como limpar tudo?** Use `docker-compose down -v` para remover containers e volumes.
 - **Como alterar portas?** Altere o mapeamento de portas no `docker-compose.yml`.
+- **Como testar as APIs?** Basta importar a coleção do Insomnia fornecida neste projeto!
 
 ---
