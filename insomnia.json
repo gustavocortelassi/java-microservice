@@ -1,246 +1,238 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2025-06-08T21:30:00.000Z",
+  "__export_date": "2025-06-08T22:10:00.000Z",
   "__export_source": "insomnia.desktop.app:v2024.2.2",
   "resources": [
     {
-      "_id": "wrk_microservices",
-      "created": 1717878900000,
-      "description": "Coleção dos Microserviços Demo",
-      "modified": 1717878900000,
-      "name": "Microservices Demo",
+      "_id": "wrk_microservice_demo",
+      "parentId": null,
+      "modified": 1717887000000,
+      "created": 1717887000000,
+      "name": "Reserva de Salas Microservices",
+      "description": "Coleção para testes dos microserviços Java/Spring Boot via Nginx",
+      "scope": "collection",
       "_type": "workspace"
     },
     {
-      "_id": "env_microservices",
-      "parentId": "wrk_microservices",
-      "created": 1717878900000,
-      "modified": 1717878900000,
-      "name": "Base Environment",
-      "data": {
-        "host_usuarios": "http://localhost:8083",
-        "host_salas": "http://localhost:8082",
-        "host_reservas": "http://localhost:8084",
-        "basic_user": "admin",
-        "basic_pass": "admin"
-      },
-      "_type": "environment"
-    },
-
-    {
-      "_id": "fld_usuario_service",
-      "parentId": "wrk_microservices",
-      "created": 1717878900001,
-      "modified": 1717878900001,
-      "name": "Usuário Service",
-      "_type": "request_group"
-    },
-    {
-      "_id": "req_listar_usuarios",
-      "parentId": "fld_usuario_service",
-      "created": 1717878900002,
-      "modified": 1717878900002,
+      "_id": "req_get_usuarios",
+      "parentId": "wrk_microservice_demo",
+      "modified": 1717887000000,
+      "created": 1717887000000,
+      "url": "http://localhost/usuarios",
       "name": "Listar Usuários",
-      "url": "{{ host_usuarios }}/usuarios",
+      "description": "",
       "method": "GET",
       "body": {},
       "parameters": [],
-      "headers": [],
-      "authentication": {
-        "type": "basic",
-        "username": "{{ basic_user }}",
-        "password": "{{ basic_pass }}"
-      },
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Basic YWRtaW46YWRtaW4="
+        }
+      ],
+      "authentication": {},
       "_type": "request"
     },
     {
-      "_id": "req_criar_usuario",
-      "parentId": "fld_usuario_service",
-      "created": 1717878900003,
-      "modified": 1717878900003,
+      "_id": "req_post_usuario",
+      "parentId": "wrk_microservice_demo",
+      "modified": 1717887000000,
+      "created": 1717887000000,
+      "url": "http://localhost/usuarios/salvar",
       "name": "Criar Usuário",
-      "url": "{{ host_usuarios }}/usuarios/salvar",
+      "description": "",
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"nome\": \"Fulano\",\n  \"email\": \"fulano@email.com\"\n}"
+        "text": "{\n  \"nome\": \"João Silva\",\n  \"email\": \"joao@exemplo.com\"\n}"
       },
       "parameters": [],
-      "headers": [],
-      "authentication": {
-        "type": "basic",
-        "username": "{{ basic_user }}",
-        "password": "{{ basic_pass }}"
-      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Basic YWRtaW46YWRtaW4="
+        }
+      ],
+      "authentication": {},
       "_type": "request"
     },
     {
-      "_id": "req_buscar_usuario",
-      "parentId": "fld_usuario_service",
-      "created": 1717878900004,
-      "modified": 1717878900004,
+      "_id": "req_get_usuario_id",
+      "parentId": "wrk_microservice_demo",
+      "modified": 1717887000000,
+      "created": 1717887000000,
+      "url": "http://localhost/usuarios/1",
       "name": "Buscar Usuário por ID",
-      "url": "{{ host_usuarios }}/usuarios/1",
+      "description": "",
       "method": "GET",
       "body": {},
       "parameters": [],
-      "headers": [],
-      "authentication": {
-        "type": "basic",
-        "username": "{{ basic_user }}",
-        "password": "{{ basic_pass }}"
-      },
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Basic YWRtaW46YWRtaW4="
+        }
+      ],
+      "authentication": {},
       "_type": "request"
     },
     {
-      "_id": "req_deletar_usuario",
-      "parentId": "fld_usuario_service",
-      "created": 1717878900005,
-      "modified": 1717878900005,
+      "_id": "req_delete_usuario",
+      "parentId": "wrk_microservice_demo",
+      "modified": 1717887000000,
+      "created": 1717887000000,
+      "url": "http://localhost/usuarios/1",
       "name": "Deletar Usuário",
-      "url": "{{ host_usuarios }}/usuarios/1",
+      "description": "",
       "method": "DELETE",
       "body": {},
       "parameters": [],
-      "headers": [],
-      "authentication": {
-        "type": "basic",
-        "username": "{{ basic_user }}",
-        "password": "{{ basic_pass }}"
-      },
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Basic YWRtaW46YWRtaW4="
+        }
+      ],
+      "authentication": {},
       "_type": "request"
     },
-
     {
-      "_id": "fld_sala_service",
-      "parentId": "wrk_microservices",
-      "created": 1717878900006,
-      "modified": 1717878900006,
-      "name": "Sala Service",
-      "_type": "request_group"
-    },
-    {
-      "_id": "req_listar_salas",
-      "parentId": "fld_sala_service",
-      "created": 1717878900007,
-      "modified": 1717878900007,
+      "_id": "req_get_salas",
+      "parentId": "wrk_microservice_demo",
+      "modified": 1717887000000,
+      "created": 1717887000000,
+      "url": "http://localhost/api/salas",
       "name": "Listar Salas",
-      "url": "{{ host_salas }}/api/salas",
+      "description": "",
       "method": "GET",
       "body": {},
       "parameters": [],
-      "headers": [],
-      "authentication": {
-        "type": "basic",
-        "username": "{{ basic_user }}",
-        "password": "{{ basic_pass }}"
-      },
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Basic YWRtaW46YWRtaW4="
+        }
+      ],
+      "authentication": {},
       "_type": "request"
     },
     {
-      "_id": "req_criar_sala",
-      "parentId": "fld_sala_service",
-      "created": 1717878900008,
-      "modified": 1717878900008,
+      "_id": "req_post_sala",
+      "parentId": "wrk_microservice_demo",
+      "modified": 1717887000000,
+      "created": 1717887000000,
+      "url": "http://localhost/api/salas",
       "name": "Criar Sala",
-      "url": "{{ host_salas }}/api/salas",
+      "description": "",
       "method": "POST",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"nome\": \"Sala 101\",\n  \"localizacao\": \"Prédio A\"\n}"
       },
       "parameters": [],
-      "headers": [],
-      "authentication": {
-        "type": "basic",
-        "username": "{{ basic_user }}",
-        "password": "{{ basic_pass }}"
-      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Basic YWRtaW46YWRtaW4="
+        }
+      ],
+      "authentication": {},
       "_type": "request"
     },
     {
-      "_id": "req_buscar_sala",
-      "parentId": "fld_sala_service",
-      "created": 1717878900009,
-      "modified": 1717878900009,
+      "_id": "req_get_sala_id",
+      "parentId": "wrk_microservice_demo",
+      "modified": 1717887000000,
+      "created": 1717887000000,
+      "url": "http://localhost/api/salas/1",
       "name": "Buscar Sala por ID",
-      "url": "{{ host_salas }}/api/salas/1",
+      "description": "",
       "method": "GET",
       "body": {},
       "parameters": [],
-      "headers": [],
-      "authentication": {
-        "type": "basic",
-        "username": "{{ basic_user }}",
-        "password": "{{ basic_pass }}"
-      },
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Basic YWRtaW46YWRtaW4="
+        }
+      ],
+      "authentication": {},
       "_type": "request"
     },
     {
-      "_id": "req_deletar_sala",
-      "parentId": "fld_sala_service",
-      "created": 1717878900010,
-      "modified": 1717878900010,
+      "_id": "req_delete_sala",
+      "parentId": "wrk_microservice_demo",
+      "modified": 1717887000000,
+      "created": 1717887000000,
+      "url": "http://localhost/api/salas/1",
       "name": "Deletar Sala",
-      "url": "{{ host_salas }}/api/salas/1",
+      "description": "",
       "method": "DELETE",
       "body": {},
       "parameters": [],
-      "headers": [],
-      "authentication": {
-        "type": "basic",
-        "username": "{{ basic_user }}",
-        "password": "{{ basic_pass }}"
-      },
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Basic YWRtaW46YWRtaW4="
+        }
+      ],
+      "authentication": {},
       "_type": "request"
     },
-
     {
-      "_id": "fld_reserva_service",
-      "parentId": "wrk_microservices",
-      "created": 1717878900011,
-      "modified": 1717878900011,
-      "name": "Reserva Service",
-      "_type": "request_group"
-    },
-    {
-      "_id": "req_listar_reservas",
-      "parentId": "fld_reserva_service",
-      "created": 1717878900012,
-      "modified": 1717878900012,
+      "_id": "req_get_reservas",
+      "parentId": "wrk_microservice_demo",
+      "modified": 1717887000000,
+      "created": 1717887000000,
+      "url": "http://localhost/reservas",
       "name": "Listar Reservas",
-      "url": "{{ host_reservas }}/reservas",
+      "description": "",
       "method": "GET",
       "body": {},
       "parameters": [],
-      "headers": [],
-      "authentication": {
-        "type": "basic",
-        "username": "{{ basic_user }}",
-        "password": "{{ basic_pass }}"
-      },
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Basic YWRtaW46YWRtaW4="
+        }
+      ],
+      "authentication": {},
       "_type": "request"
     },
     {
-      "_id": "req_criar_reserva",
-      "parentId": "fld_reserva_service",
-      "created": 1717878900013,
-      "modified": 1717878900013,
+      "_id": "req_post_reserva",
+      "parentId": "wrk_microservice_demo",
+      "modified": 1717887000000,
+      "created": 1717887000000,
+      "url": "http://localhost/reservas/salvar",
       "name": "Criar Reserva",
-      "url": "{{ host_reservas }}/reservas/salvar",
+      "description": "",
       "method": "POST",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"usuarioId\": 1,\n  \"salaId\": 1,\n  \"data\": \"2025-06-08\"\n}"
+        "text": "{\n  \"usuarioId\": 1,\n  \"salaId\": 1,\n  \"dataHoraInicio\": \"2025-06-10T14:00:00\",\n  \"dataHoraFim\": \"2025-06-10T15:00:00\"\n}"
       },
       "parameters": [],
-      "headers": [],
-      "authentication": {
-        "type": "basic",
-        "username": "{{ basic_user }}",
-        "password": "{{ basic_pass }}"
-      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Basic YWRtaW46YWRtaW4="
+        }
+      ],
+      "authentication": {},
       "_type": "request"
     }
   ]
