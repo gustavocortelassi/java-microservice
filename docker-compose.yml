@@ -46,7 +46,7 @@ services:
     build: ./usuarioservice
     container_name: usuarioservice
     ports:
-      - "8081:8083"  # mapeando corretamente a porta 8083 interna
+      - "8083:8083"
     depends_on:
       - postgres-usuario
     networks:
