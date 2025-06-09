@@ -109,7 +109,7 @@ mvn test
 
 Uma coleção completa do Insomnia já está pronta para você testar todos os endpoints dos microserviços, incluindo exemplos de payload, autenticação e organização por serviço.
 
-- **Arquivo da coleção Insomnia:** [`insomnia_microservices.json`](insomnia_microservices.json)
+- **Arquivo da coleção Insomnia:** [`insomnia.json`](insomnia.json)
 - **Como usar:**  
   1. Baixe o arquivo.
   2. No Insomnia, vá em `Import Data > From File` e selecione o JSON.
